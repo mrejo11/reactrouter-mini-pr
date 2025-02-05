@@ -1,0 +1,10 @@
+
+function SearchPage() {
+  return (
+    <div>
+      searchpage
+    </div>
+  )
+}
+
+export default SearchPage
