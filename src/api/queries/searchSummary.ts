@@ -1,5 +1,5 @@
+import type { PackagesSummary } from "../types/packagesSummary";
 
-import { PackagesSummary } from "../types/packagesSummary";
 interface searchResponse {
     objects: {
         package: {
@@ -8,14 +8,14 @@ interface searchResponse {
             version: string;
             keywords: string[];
         }
-    }[]
+    }[];
 }
 
 export async function searchPackages(term: string): Promise<PackagesSummary[]> {
     const res = await fetch(
         `https://registry.npmjs.org/-/v1/search?text=${term}`
-    )
-    const data: searchResponse = await res.json()
+    );
+    const data: searchResponse = await res.json();
 
     return data.objects.map(({ package: { name, description, version, keywords } }) => {
         return {
@@ -23,6 +23,6 @@ export async function searchPackages(term: string): Promise<PackagesSummary[]> {
             description,
             version,
             keywords,
-        }
-    })
+        };
+    });
 }
